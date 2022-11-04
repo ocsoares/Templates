@@ -6,9 +6,8 @@
     "scripts": {
         "tscdir": "tsc -w  --noEmit false --outDir dist",
         "start": "node ./dist/app.js",
-        "build": "tsc",
-        "nodemon": "nodemon ./dist/app.js",
-        "madge": "madge --circular --extensions ts ./src/database/entity"
+        "build": "tsc --noEmit false --outDir dist",
+        "dev": "nodemon ./dist/app.js"
     },
     "keywords": [],
     "author": "",
