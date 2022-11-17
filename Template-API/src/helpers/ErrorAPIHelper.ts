@@ -18,3 +18,5 @@ export class BadRequestAPIError extends ErrorAPIHelper {
         this.name = 'BadRequestError';
     }
 }
+
+// more errors...
