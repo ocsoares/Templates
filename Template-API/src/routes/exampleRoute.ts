@@ -4,6 +4,6 @@ import { handleValidation } from '../middleware/handleValidation';
 
 const exampleRoute = Router();
 
-exampleRoute.post('/account', exampleValidation(), handleValidation/*, controller... */);
+exampleRoute.post('/any', exampleValidation(), handleValidation/*, controller... */);
 
 export default exampleRoute;
