@@ -7,7 +7,7 @@
         "tscdir": "tsc -w  --noEmit false --outDir dist",
         "start": "node ./dist/app.js",
         "build": "tsc --noEmit false --outDir dist",
-        "dev": "cls && nodemon ./dist/script.js"
+        "dev": "cls && nodemon ./dist/app.js"
     },
     "keywords": [],
     "author": "",
