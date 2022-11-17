@@ -7,7 +7,7 @@ interface IExample {
 
 export const exampleModel = mongoose.model('example', new Schema<IExample>({
     name: { type: String, required: true, unique: true },
-    password: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
 },
     {
         timestamps: true
