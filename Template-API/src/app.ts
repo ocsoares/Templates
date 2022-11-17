@@ -1,8 +1,10 @@
+import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
 import atlasDBConnection from './config/database';
 import Logger from './config/logs';
 import morganMiddleware from './middleware/morganMiddleware';
+import { errorAPIMiddleware, pageNotFound } from './middleware/errorAPIMiddleware';
 
 const server = express();
 
@@ -20,6 +22,11 @@ server.use(morganMiddleware);
 server.use('/api/',
     // Rota exportada
 );
+
+server.use(pageNotFound);
+
+// Para Funções ASSÍNCRONAS (async) PRECISA usar a lib 'express-async-errors' !! <<
+server.use(errorAPIMiddleware);
 
 server.listen(port, async () => {
     await atlasDBConnection();
