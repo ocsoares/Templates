@@ -5,7 +5,7 @@ interface IExample {
     password: string;
 }
 
-export const exampleModel = mongoose.model('example', new Schema<IExample>({
+export const ExampleModel = mongoose.model('example', new Schema<IExample>({
     name: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 },
