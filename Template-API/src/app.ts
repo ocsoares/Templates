@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
@@ -8,8 +9,8 @@ import { errorAPIMiddleware, pageNotFound } from './middleware/errorAPIMiddlewar
 
 const server = express();
 
-const localhost = 'http://localhost';
-const port = 5000;
+const host = process.env.HOST_URL;
+const port = process.env.HOST_PORT;
 
 server.use(express.json());
 
@@ -31,5 +32,5 @@ server.use(errorAPIMiddleware);
 server.listen(port, async () => {
     await atlasDBConnection();
 
-    Logger.info(`Servidor rodando remotamente em ${localhost}:${port}`);
+    Logger.info(`Servidor rodando remotamente em ${host}:${port}`);
 });

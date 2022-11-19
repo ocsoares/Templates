@@ -4,7 +4,7 @@
     "description": "",
     "main": "src/app.ts",
     "scripts": {
-        "tscdir": "tsc -w  --noEmit false --outDir dist",
+        "tsc": "tsc -w  --noEmit false --outDir dist",
         "start": "node ./dist/app.js",
         "build": "tsc --noEmit false --outDir dist",
         "dev": "cls && nodemon ./dist/app.js"
