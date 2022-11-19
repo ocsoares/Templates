@@ -2,12 +2,12 @@
     "name": "template-api",
     "version": "1.0.0",
     "description": "",
-    "main": "src/app.ts",
+    "main": "src/server.ts",
     "scripts": {
         "tsc": "tsc -w  --noEmit false --outDir dist",
-        "start": "node ./dist/app.js",
+        "start": "node ./dist/server.js",
         "build": "tsc --noEmit false --outDir dist",
-        "dev": "cls && nodemon ./dist/app.js"
+        "dev": "nodemon ./dist/server.js"
     },
     "keywords": [],
     "author": "",
