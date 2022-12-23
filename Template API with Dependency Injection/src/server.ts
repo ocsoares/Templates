@@ -1,13 +1,13 @@
 import 'dotenv/config';
 import Logger from './config/logs';
 import { app } from './app';
-import { makeAtlasDatabaseFactory } from './factories/databaseFactory';
+import { makeMongooseODMFactory } from './factories/databaseFactory';
 
 const host = process.env.HOST_URL;
 const port = process.env.HOST_PORT;
 
 app.listen(port, async () => {
-    const database = makeAtlasDatabaseFactory();
+    const database = makeMongooseODMFactory();
 
     await database.connection();
 

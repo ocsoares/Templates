@@ -5,7 +5,7 @@ import Logger from './logs';
 
 // IMPORTANTE: A senha do Atlas em URL PRECISA Retirar os <> !! <<
 
-export class Mongoose implements IMongoose {
+export class MongooseODM implements IMongoose {
     private readonly _atlasURLConnection = process.env.ATLAS_URL_CONNECTION as string;
 
     async connection(): Promise<void> {
