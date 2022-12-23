@@ -1,8 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
+import { IController } from '../../@types/interfaces/IController';
 import { AnyCaseUserCase } from './AnyCaseUseCase';
-import { IAnyCaseController, IUser } from './IAnyCase';
+import { IUser } from './IAnyCase';
 
-export class AnyController implements IAnyCaseController {
+// NOME do Arquivo = Case (geralmente o Nome da Pasta) + Controller !! <<
+
+export class AnyController implements IController {
     constructor(
         private readonly anyCaseUserCase: AnyCaseUserCase // Case responsible, in this case, for CREATE a new user !!
     ) { }

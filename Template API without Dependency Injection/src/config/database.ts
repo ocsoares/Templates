@@ -4,7 +4,7 @@ import Logger from './logs';
 
 // IMPORTANTE: A senha do Atlas em URL PRECISA Retirar os <> !! <<
 
-const atlasDBConnection = async () => {
+const mongooseConnection = async (): Promise<void> => {
     try {
         await mongoose.connect(process.env.ATLAS_URL as string);
         Logger.info('Conectado com sucesso ao Atlas !');
@@ -16,4 +16,4 @@ const atlasDBConnection = async () => {
     }
 };
 
-export default atlasDBConnection;
+export default mongooseConnection;

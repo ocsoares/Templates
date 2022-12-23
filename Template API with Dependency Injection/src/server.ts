@@ -1,13 +1,15 @@
 import 'dotenv/config';
-import atlasDBConnection from './config/database';
 import Logger from './config/logs';
 import { app } from './app';
+import { makeAtlasDatabaseFactory } from './factories/databaseFactory';
 
 const host = process.env.HOST_URL;
 const port = process.env.HOST_PORT;
 
 app.listen(port, async () => {
-    await atlasDBConnection();
+    const database = makeAtlasDatabaseFactory();
+
+    await database.connection();
 
     Logger.info(`Servidor rodando remotamente em ${host}:${port}`);
 

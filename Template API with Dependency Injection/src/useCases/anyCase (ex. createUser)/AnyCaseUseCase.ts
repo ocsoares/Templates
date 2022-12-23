@@ -1,7 +1,10 @@
+import { IUseCase } from "../../@types/interfaces/IUseCase";
 import { IAnyRepository } from "../../repositories/IAnyRepository";
-import { IAnyCaseUseCaseMethods, IUser } from "./IAnyCase";
+import { IUser } from "./IAnyCase";
 
-export class AnyCaseUserCase implements IAnyCaseUseCaseMethods {
+// NOME do ARQUIVO = Case (geralmente o Nome da Pasta) + UseCase !! << 
+
+export class AnyCaseUserCase implements IUseCase {
     constructor(
         private readonly anyRepository: IAnyRepository // Repository with database methods
     ) { }
@@ -14,6 +17,7 @@ export class AnyCaseUserCase implements IAnyCaseUseCaseMethods {
         }
 
         // Database Model instead of IUser !!
+        // VER se é pra usar o Model ou a Interface, pq o Model varia do Banco !!!!!
         const newUser: IUser = {
             username: 'any',
             email: 'any',
