@@ -9,6 +9,9 @@ import { IAnyRepository } from "../../interfaces/IAnyRepository";
 
 // IMPORTANTE, se, por exemplo, esse Repositório for sobre Usuários, Fazer TODOS os Métodos rela-
 // -cionado, por exemplo, create, delete, find um usuário, etc... !!! <<< 
+
+// IMPORTANTE: Quando for CRIAR um NOVO Usuário, depois de criado, PROCURAR pelo ID para ver se 
+// criou mesmo, destruturando o id e checar com if e error !!!
 export class MongooseAnyRepository implements IAnyRepository {
     private readonly _UserMongooseModel = mongoose.model('any', new Schema<IUser>({
         username: { type: String, required: true, unique: true },
