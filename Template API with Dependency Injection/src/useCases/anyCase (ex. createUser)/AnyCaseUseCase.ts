@@ -1,6 +1,6 @@
 import { IUseCase } from "../../@types/interfaces/IUseCase";
-import { IAnyRepository } from "../../repositories/IAnyRepository";
-import { IUser } from "./IAnyCase";
+import { IUser } from "../../models/IUser";
+import { IAnyRepository } from "../../repositories/interfaces/IAnyRepository";
 
 // NOME do ARQUIVO = Case (geralmente o Nome da Pasta) + UseCase !! << 
 
@@ -13,16 +13,11 @@ export class AnyCaseUserCase implements IUseCase {
         const userAlreadyExists = await this.anyRepository.findByUsername(data.username);
 
         if (userAlreadyExists) {
-            // code...
+            // ERROR !!
+            // code....
         }
 
-        // Database Model instead of IUser !!
-        // VER se é pra usar o Model ou a Interface, pq o Model varia do Banco !!!!!
-        const newUser: IUser = {
-            username: 'any',
-            email: 'any',
-            password: 'any'
-        };
+        const newUser: IUser = data;
 
         await this.anyRepository.save(newUser);
 

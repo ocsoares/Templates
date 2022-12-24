@@ -1,4 +1,4 @@
-// NOME do Arquivo = I + Case (geralmente o Nome da Pasta) !! <<
+// Se precisar do id, colocar como readonly !! <<
 
 export interface IUser {
     username: string;

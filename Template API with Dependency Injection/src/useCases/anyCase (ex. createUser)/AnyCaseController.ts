@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IController } from '../../@types/interfaces/IController';
+import { IUser } from '../../models/IUser';
 import { AnyCaseUserCase } from './AnyCaseUseCase';
-import { IUser } from './IAnyCase';
 
 // NOME do Arquivo = Case (geralmente o Nome da Pasta) + Controller !! <<
 
