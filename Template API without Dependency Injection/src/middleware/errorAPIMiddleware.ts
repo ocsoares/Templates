@@ -21,7 +21,6 @@ export const errorAPIMiddleware = (
     // gem Padrão e Desformatada, manda um 'Internal Server Error' !! <<
     const message = error.statusCode ? error.message : 'Internal Server Error';
 
-    console.log('Error:', error);
     return res.status(statusCode).json({
         error: error.name,
         message
