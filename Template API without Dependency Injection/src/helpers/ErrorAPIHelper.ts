@@ -1,3 +1,5 @@
+import { BadRequestErrorMessages } from "../@types/errorAPIMessages";
+
 export class ErrorAPIHelper extends Error {
     public readonly statusCode: number;
 
@@ -12,7 +14,7 @@ export class BadRequestAPIError extends ErrorAPIHelper {
     // O statusCode NÃO entrou no constructor porque, nesse caso, ele vai
     // ser FIXO, e a message vai ser passada como Parâmetro !! <<
 
-    constructor(message: string) {
+    constructor(message: BadRequestErrorMessages) {
         super(message, 400);
 
         this.name = 'BadRequestError';
