@@ -1,7 +1,0 @@
-.git
-coverage
-dist
-logs
-node_modules
-.env
-TODO.md
