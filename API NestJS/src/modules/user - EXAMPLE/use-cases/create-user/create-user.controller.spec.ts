@@ -1,13 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { UserRepository } from '../../../../repositories - EXAMPLE/abstracts/UserRepository';
-import { UserModule } from '../../user.module';
-import { InMemoryDbModule } from '../../../test/in-memory-database/in-memory-database.module';
+import { UserRepository } from '../../../../repositories/abstracts/UserRepository';
 import { CreateUserService } from './create-user.service';
 import { CreateUserDTO } from './dtos/CreateUserDTO';
 import { IUser } from 'src/models/IUser';
 import * as bcrypt from 'bcrypt';
+import { TestDependenciesModule } from '../../../../modules/test/test-dependencies.module';
 
 describe('UserController', () => {
     let app: INestApplication;
@@ -16,18 +15,7 @@ describe('UserController', () => {
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
-            imports: [UserModule, InMemoryDbModule],
-            providers: [
-                CreateUserService,
-                {
-                    provide: UserRepository,
-                    useValue: {
-                        findByName: jest.fn(),
-                        findByEmail: jest.fn(),
-                        create: jest.fn(),
-                    },
-                },
-            ],
+            imports: [TestDependenciesModule],
         }).compile();
 
         app = moduleFixture.createNestApplication();

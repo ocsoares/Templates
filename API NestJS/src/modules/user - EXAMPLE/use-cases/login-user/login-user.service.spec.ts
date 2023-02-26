@@ -1,7 +1,7 @@
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { IUserPayload } from 'src/modules/auth/models/IUserPayload';
-import { LoginUserService } from './login-user.service';
+import { LoginUserService } from '../login-user/login-user.service';
 
 describe('LoginUserService', () => {
     let service: LoginUserService;

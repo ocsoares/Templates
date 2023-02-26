@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { IService } from 'src/interfaces/IService';
 import { IUser } from 'src/models/IUser';
-import { UserRepository } from '../../../../repositories - EXAMPLE/abstracts/UserRepository';
+import { UserRepository } from '../../../../repositories/abstracts/UserRepository';
 import * as bcrypt from 'bcrypt';
 import { IReturnUser } from 'src/interfaces/IReturnUser';
 

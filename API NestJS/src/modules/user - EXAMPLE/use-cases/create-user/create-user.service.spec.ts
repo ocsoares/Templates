@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { IUser } from 'src/models/IUser';
-import { UserRepository } from '../../../../repositories - EXAMPLE/abstracts/UserRepository';
+import { UserRepository } from '../../../../repositories/abstracts/UserRepository';
 import { CreateUserService } from './create-user.service';
 import * as bcript from 'bcrypt';
 
