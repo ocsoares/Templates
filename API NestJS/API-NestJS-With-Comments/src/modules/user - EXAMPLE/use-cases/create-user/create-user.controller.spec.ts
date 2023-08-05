@@ -6,7 +6,7 @@ import { CreateUserService } from './create-user.service';
 import { CreateUserDTO } from './dtos/CreateUserDTO';
 import { IUser } from 'src/models/IUser';
 import * as bcrypt from 'bcrypt';
-import { TestDependenciesModule } from '../../../../modules/test/test-dependencies.module';
+import { TestDependenciesModule } from '../../../test/test-dependencies.module';
 
 describe('UserController', () => {
     let app: INestApplication;

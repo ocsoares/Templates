@@ -6,14 +6,14 @@ import { LoginUserService } from './login-user.service';
 import * as supertest from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from '../../../../modules/auth/strategies/local.strategy';
-import { AuthService } from '../../../../modules/auth/auth.service';
+import { LocalStrategy } from '../../../auth/strategies/local.strategy';
+import { AuthService } from '../../../auth/auth.service';
 import { IUser } from 'src/models/IUser';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ConfigModule } from '@nestjs/config';
 import { IReturnUser } from 'src/interfaces/IReturnUser';
-import { LoginValidationBodyModule } from '../../../../modules/login-validation-body/login-validation-body.module';
+import { LoginValidationBodyModule } from '../../../login-validation-body/login-validation-body.module';
 
 describe('LoginUserController', () => {
     let app: INestApplication;
