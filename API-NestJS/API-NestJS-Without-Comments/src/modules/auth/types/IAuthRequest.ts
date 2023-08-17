@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { IReturnUser } from 'src/interfaces/IReturnUser';
+import { IUserWithoutPassword } from 'src/models/IUserWithoutPassword';
 
 export interface IAuthRequest extends Request {
-    user: IReturnUser;
+    user: IUserWithoutPassword;
 }

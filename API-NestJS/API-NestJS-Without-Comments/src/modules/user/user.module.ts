@@ -4,6 +4,8 @@ import { CreateUserService } from './use-cases/create-user/create-user.service';
 import { LoginUserController } from './use-cases/login-user/login-user.controller';
 import { LoginUserService } from './use-cases/login-user/login-user.service';
 import { JwtModule } from '@nestjs/jwt';
+import { UpdateUserController } from './use-cases/update-user/update-user.controller';
+import { UpdateUserService } from './use-cases/update-user/update-user.service';
 
 @Module({
     imports: [
@@ -14,7 +16,15 @@ import { JwtModule } from '@nestjs/jwt';
             }),
         }),
     ],
-    controllers: [CreateUserController, LoginUserController],
-    providers: [CreateUserService, LoginUserService],
+    controllers: [
+        CreateUserController,
+        LoginUserController,
+        UpdateUserController,
+    ],
+    providers: [
+        CreateUserService,
+        LoginUserService,
+        UpdateUserService,
+    ],
 })
 export class UserModule {}

@@ -12,7 +12,7 @@ import { IUser } from 'src/models/IUser';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ConfigModule } from '@nestjs/config';
-import { IReturnUser } from 'src/interfaces/IReturnUser';
+import { IUserWithoutPassword } from 'src/models/IUserWithoutPassword';
 import { LoginValidationBodyModule } from '../../../login-validation-body/login-validation-body.module';
 
 describe('LoginUserController', () => {
@@ -29,7 +29,7 @@ describe('LoginUserController', () => {
         password: 'teste123',
     };
 
-    const userWithoutPass: IReturnUser = {
+    const userWithoutPass: IUserWithoutPassword = {
         id: user.id,
         name: user.name,
         email: user.email,

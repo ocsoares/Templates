@@ -24,7 +24,6 @@ export class LoginUserController implements IController {
         const JWT = await this._loginUserService.execute(req.user);
 
         return {
-            message: 'Login realizado com sucesso !',
             data: JWT,
         };
     }

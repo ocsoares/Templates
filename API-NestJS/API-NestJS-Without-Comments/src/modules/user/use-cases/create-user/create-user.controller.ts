@@ -1,21 +1,20 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { IController, returnHandle } from 'src/interfaces/IController';
-import { IsPublic } from '../../../auth/decorators/is-public.decorator';
 import { CreateUserService } from './create-user.service';
 import { CreateUserDTO } from './dtos/CreateUserDTO';
+import { IsPublic } from 'src/modules/auth/decorators/is-public.decorator';
 
 @Controller('auth')
 export class CreateUserController implements IController {
-    constructor(private readonly _createUserService: CreateUserService) {}
+    constructor(private readonly createUserService: CreateUserService) {}
 
     @IsPublic()
     @Post('register')
     async handle(@Body() body: CreateUserDTO): Promise<returnHandle> {
-        const createUser = await this._createUserService.execute(body);
+        const createdUser = await this.createUserService.execute(body);
 
         return {
-            message: 'Usuário criado com sucesso !',
-            data: createUser,
+            data: createdUser,
         };
     }
 }
