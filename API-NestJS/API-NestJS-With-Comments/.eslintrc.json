@@ -12,8 +12,6 @@
     "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended"
-        // "airbnb-base",
-        // "airbnb-typescript/base"
     ],
     "root": true,
     "env": {
@@ -24,14 +22,12 @@
         ".eslintrc.js"
     ],
     "rules": {
-        // "prettier/prettier": "off",
         "prefer-template":"error",
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "prefer-destructuring": ["error", {
             "array": true,
             "object": true
           }, {
-            // "enforceForRenamedProperties": true
           }],
         "@typescript-eslint/linebreak-style": "off",
         "@typescript-eslint/interface-name-prefix": "off",
@@ -39,7 +35,6 @@
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }],
-        // "brace-style": ["error", "stroustrup"], // Conflict with Enter
         "no-multiple-empty-lines": ["error", { "max": 1 }],
         "space-before-blocks": ["error", "always"],
         "padding-line-between-statements": [
@@ -67,7 +62,7 @@
                 "leadingUnderscore": "allow",
                 "trailingUnderscore": "allow",
                 "filter": {
-                    "regex": "^(__v)$", // PERMITE o uso da Propriedade de nome __v !!! <<<
+                    "regex": "^(Allow-a-Word)$",
                     "match": false
                 }                  
             },
@@ -75,7 +70,7 @@
                 "selector": "memberLike",
                 "modifiers": ["private"],
                 "format": ["camelCase"],
-                "leadingUnderscore": "require"
+                "leadingUnderscore": "allow"
             },
             {
                 "selector": "property",
