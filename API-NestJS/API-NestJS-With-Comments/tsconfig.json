@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "lib": ["ES2023"],
+    "target": "ES2022",
+    "paths": {
+        "*": [
+          "*",
+          "src/*"
+        ]
+    },
     "strict": true,
     "strictNullChecks": false,
     "declaration": true,
@@ -8,7 +16,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
