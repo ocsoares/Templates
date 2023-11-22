@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../../repositories/abstracts/UserRepository';
 import { IUserWithoutPassword } from 'src/models/IUserWithoutPassword';
 import { InvalidCredentialsException } from 'src/exceptions/auth-exceptions/invalid-credentials.exception';
-import { EncryptPasswordHelper } from 'src/helpers/encrypt-password.helper';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 interface IAuthService {
     validateUser(
@@ -13,7 +13,10 @@ interface IAuthService {
 
 @Injectable()
 export class AuthService implements IAuthService {
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(
+        private readonly userRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
+    ) {}
 
     async validateUser(
         email: string,
@@ -25,7 +28,7 @@ export class AuthService implements IAuthService {
             throw new InvalidCredentialsException();
         }
 
-        const isValidPassword = await EncryptPasswordHelper.bcryptCompare(
+        const isValidPassword = await this.passwordHasher.compare(
             password,
             user.password,
         );

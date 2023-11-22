@@ -7,10 +7,13 @@ import { UserAlreadyExistsByNameException } from '../../../../exceptions/user-ex
 import { UserAlreadyExistsByEmailException } from '../../../../exceptions/user-exceptions/user-already-exists-by-email.exception';
 import { ErrorCreatingUserException } from '../../../../exceptions/user-exceptions/error-creating-user.exception';
 import { EncryptPasswordHelper } from '../../../../helpers/encrypt-password.helper';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()
 export class CreateUserService implements IService {
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(private readonly userRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
+    ) {}
 
     async execute(data: CreateUserDTO): Promise<UserEntity> {
         const userAlreadyExists = await this.userRepository.findByName(
@@ -32,7 +35,7 @@ export class CreateUserService implements IService {
         const createdUser = await this.userRepository.create({
             name: data.name,
             email: data.email,
-            password: await EncryptPasswordHelper.bcryptEncrypt(
+            password: await this.passwordHasher.hash(
                 data.password,
                 10,
             ),

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../../repositories - EXAMPLE/abstracts/UserRepository';
-import * as bcrypt from 'bcrypt';
 import { IReturnUser } from 'src/interfaces/IReturnUser';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 interface IAuthService {
     validateUser(email: string, password: string): Promise<IReturnUser>; // VER o Retorno disso...
@@ -13,7 +13,10 @@ interface IAuthService {
 
 @Injectable()
 export class AuthService implements IAuthService {
-    constructor(private readonly _authUserRepository: UserRepository) {}
+    constructor(
+        private readonly _authUserRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
+    ) {}
 
     async validateUser(email: string, password: string): Promise<IReturnUser> {
         const user = await this._authUserRepository.findByEmail(email);
@@ -22,7 +25,7 @@ export class AuthService implements IAuthService {
             throw new Error('Email ou senha incorreto(s) !');
         }
 
-        const isValidPassword = await bcrypt.compare(password, user.password);
+        const isValidPassword = await this.passwordHasher.compare(password, user.password);
 
         if (!isValidPassword) {
             throw new Error('Email ou senha incorreto(s) !');

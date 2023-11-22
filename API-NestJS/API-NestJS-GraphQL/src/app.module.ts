@@ -6,6 +6,7 @@ import { PrismaDatabaseModule } from './repositories/implementations/prisma/pris
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { BcryptHasherModule } from './cryptography/implementations/bcrypt/bcrypt-hasher.module';
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
         }),
         PrismaDatabaseModule,
+        BcryptHasherModule,
         UserModule,
         AuthModule,
     ],

@@ -7,11 +7,13 @@ import { InvalidCredentialsException } from '../../../../exceptions/auth-excepti
 import { JwtService } from '@nestjs/jwt';
 import { ITokenPayload } from 'src/interfaces/ITokenPayload';
 import { EncryptPasswordHelper } from '../../../../helpers/encrypt-password.helper';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()
 export class LoginUserService implements IService {
     constructor(
         private readonly userRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
         private readonly jwtService: JwtService,
     ) {}
 
@@ -21,7 +23,7 @@ export class LoginUserService implements IService {
         if (!user) {
             throw new InvalidCredentialsException();
         }
-        const isValidPassword = await EncryptPasswordHelper.bcryptCompare(
+        const isValidPassword = await this.passwordHasher.compare(
             data.password,
             user.password,
         );

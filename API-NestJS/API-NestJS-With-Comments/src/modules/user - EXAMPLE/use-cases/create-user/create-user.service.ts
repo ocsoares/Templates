@@ -2,12 +2,15 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { IService } from 'src/interfaces/IService';
 import { IUser } from 'src/models/IUser';
 import { UserRepository } from '../../../../repositories/abstracts/UserRepository';
-import * as bcrypt from 'bcrypt';
 import { IReturnUser } from 'src/interfaces/IReturnUser';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()
 export class CreateUserService implements IService {
-    constructor(private readonly _createUserRepository: UserRepository) {}
+    constructor(
+        private readonly _createUserRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
+    ) {}
 
     async execute(data: IUser): Promise<IReturnUser> {
         const userAlreadyExists = await this._createUserRepository.findByName(
@@ -33,7 +36,7 @@ export class CreateUserService implements IService {
         const createUser = await this._createUserRepository.create({
             name: data.name,
             email: data.email,
-            password: await bcrypt.hash(data.password, 10),
+            password: await this.passwordHasher.hash(data.password, 10),
         });
 
         const mainInformationUser: IReturnUser = {
