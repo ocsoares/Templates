@@ -6,7 +6,6 @@ import { TokenType } from 'src/graphql/types/token.type';
 import { InvalidCredentialsException } from '../../../../exceptions/auth-exceptions/invalid-credentials.exception';
 import { JwtService } from '@nestjs/jwt';
 import { ITokenPayload } from 'src/interfaces/ITokenPayload';
-import { EncryptPasswordHelper } from '../../../../helpers/encrypt-password.helper';
 import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()

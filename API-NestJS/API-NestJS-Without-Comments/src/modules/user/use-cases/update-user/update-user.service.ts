@@ -3,13 +3,16 @@ import { IService } from 'src/interfaces/IService';
 import { UserRepository } from 'src/repositories/abstracts/UserRepository';
 import { UserNotFoundException } from 'src/exceptions/user-exceptions/user-not-found.exception';
 import { ErrorUpdatingUserException } from 'src/exceptions/user-exceptions/error-updating-user.exception';
-import { EncryptPasswordHelper } from 'src/helpers/encrypt-password.helper';
 import { UpdateUserDTO } from './dtos/UpdateUserDTO';
 import { IUserWithoutPassword } from 'src/models/IUserWithoutPassword';
+import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()
 export class UpdateUserService implements IService {
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(
+        private readonly userRepository: UserRepository,
+        private readonly passwordHasher: PasswordHasher,
+    ) {}
 
     async execute(
         id: string,
@@ -23,7 +26,7 @@ export class UpdateUserService implements IService {
 
         if (data.password) {
             if (data.password !== user.password) {
-                data.password = await EncryptPasswordHelper.bcryptEncrypt(
+                data.password = await this.passwordHasher.hash(
                     data.password,
                     10,
                 );

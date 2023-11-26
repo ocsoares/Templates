@@ -6,7 +6,6 @@ import { UserEntity } from 'src/graphql/entities/user.entity';
 import { UserAlreadyExistsByNameException } from '../../../../exceptions/user-exceptions/user-already-exists-by-name.exception';
 import { UserAlreadyExistsByEmailException } from '../../../../exceptions/user-exceptions/user-already-exists-by-email.exception';
 import { ErrorCreatingUserException } from '../../../../exceptions/user-exceptions/error-creating-user.exception';
-import { EncryptPasswordHelper } from '../../../../helpers/encrypt-password.helper';
 import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
 
 @Injectable()
