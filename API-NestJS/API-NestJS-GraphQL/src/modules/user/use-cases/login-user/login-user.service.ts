@@ -4,16 +4,16 @@ import { UserRepository } from '../../../../repositories/abstracts/UserRepositor
 import { LoginUserDTO } from './dtos/LoginUserDTO';
 import { TokenType } from 'src/graphql/types/token.type';
 import { InvalidCredentialsException } from '../../../../exceptions/auth-exceptions/invalid-credentials.exception';
-import { JwtService } from '@nestjs/jwt';
 import { ITokenPayload } from 'src/interfaces/ITokenPayload';
 import { PasswordHasher } from 'src/cryptography/abstracts/password-hasher';
+import { TokenManager } from 'src/cryptography/abstracts/token-manager';
 
 @Injectable()
 export class LoginUserService implements IService {
     constructor(
         private readonly userRepository: UserRepository,
         private readonly passwordHasher: PasswordHasher,
-        private readonly jwtService: JwtService,
+        private readonly tokenManager: TokenManager,
     ) {}
 
     async execute(data: LoginUserDTO): Promise<TokenType> {
@@ -43,7 +43,7 @@ export class LoginUserService implements IService {
     }
 
     private async generateToken(payload: ITokenPayload): Promise<string> {
-        const generatedToken = await this.jwtService.signAsync(payload);
+        const generatedToken = await this.tokenManager.generate(payload);
 
         return generatedToken;
     }

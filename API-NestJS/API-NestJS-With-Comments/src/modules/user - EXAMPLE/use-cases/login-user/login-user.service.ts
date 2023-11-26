@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { TokenManager } from 'src/cryptography/abstracts/token-manager';
 import { IReturnUser } from 'src/interfaces/IReturnUser';
 import { IService } from 'src/interfaces/IService';
 import { IUserPayload } from 'src/modules/auth/models/IUserPayload';
@@ -8,7 +8,7 @@ import { IUserPayload } from 'src/modules/auth/models/IUserPayload';
 
 @Injectable()
 export class LoginUserService implements IService {
-    constructor(private readonly _jwtService: JwtService) {}
+    constructor(private readonly _tokenManager: TokenManager) {}
 
     async execute(data: IReturnUser): Promise<string> {
         const payload: IUserPayload = {
@@ -17,7 +17,7 @@ export class LoginUserService implements IService {
             email: data.email,
         };
 
-        const JWT = this._jwtService.sign(payload);
+        const JWT = this._tokenManager.generate(payload);
 
         return JWT;
     }

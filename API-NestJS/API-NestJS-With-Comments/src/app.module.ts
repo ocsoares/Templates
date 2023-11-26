@@ -9,6 +9,7 @@ import { PayablesModule } from './modules/payables/payables.module';
 import { LoginValidationBodyModule } from './modules/login-validation-body/login-validation-body.module';
 import { PrismaDatabaseModule } from './repositories/implementations/prisma/prisma-database.module';
 import { BcryptHasherModule } from './cryptography/implementations/bcrypt/bcrypt-hasher.module';
+import { JwtManagerModule } from './cryptography/implementations/jwt/jwt-manager.module';
 // import { MongooseDatabaseModule } from './repositories/implementations/mongoose/mongoose-database.module';
 
 // IMPORTANTE: Como os Módulos de Banco de Dados são GLOBAIS, só vão funcionar FORA DOS TESTES, porque nos
@@ -22,6 +23,7 @@ import { BcryptHasherModule } from './cryptography/implementations/bcrypt/bcrypt
             envFilePath: '.env',
         }),
         PrismaDatabaseModule,
+        JwtManagerModule,
         BcryptHasherModule,
         UserModule,
         AuthModule,

@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { IUserWithoutPassword } from 'src/models/IUserWithoutPassword';
 import { IService } from 'src/interfaces/IService';
 import { IUserPayload } from 'src/modules/auth/models/IUserPayload';
+import { TokenManager } from 'src/cryptography/abstracts/token-manager';
 
 @Injectable()
 export class LoginUserService implements IService {
-    constructor(private readonly jwtService: JwtService) {}
+    constructor(private readonly tokenManager: TokenManager) {}
 
     async execute(data: IUserWithoutPassword): Promise<string> {
         const payload: IUserPayload = {
@@ -15,7 +15,7 @@ export class LoginUserService implements IService {
             email: data.email,
         };
 
-        const JWT = this.jwtService.sign(payload);
+        const JWT = this.tokenManager.generate(payload);
 
         return JWT;
     }
