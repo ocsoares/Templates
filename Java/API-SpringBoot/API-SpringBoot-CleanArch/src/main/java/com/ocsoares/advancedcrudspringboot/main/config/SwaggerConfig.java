@@ -20,10 +20,8 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Bean
     public OpenAPI customAPI() {
-        return new OpenAPI().info(new Info().title("Advanced Crud Spring Boot")
-                        .version("1.0.0")
-                        .description(
-                                "Uma API REST de CRUD avançada realizada com Spring Boot, Arquitetura Limpa, autenticação e testes."))
+        return new OpenAPI().info(
+                        new Info().title("COLOCAR TÍTULO....").version("1.0.0").description("COLOCAR DESCRIÇÃO..."))
                 .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes("Bearer Authentication", this.securityScheme()));
     }
